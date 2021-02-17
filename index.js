@@ -64,7 +64,7 @@ app.post('/api/persons', (request, response) =>{
         response.status(200 || 201).send({ name: personne.name,  number: personne.number})
     }
     app.use(morgan(`:method :url :status :res[content-length] - :response-time ms  {"name": ${person.name}, "number": ${person.number}}`))
-    //persons = persons.concat(person)
+    persons = persons.concat(person)
     response.json(person)
 })
 
