@@ -29,7 +29,6 @@ let persons = [
         number: "39-23-6423122"
       }
   ]
-  app.use(morgan(`:method :url :status :res[content-length] - :response-time ms  {"name": ${persons[0].name}, "number": ${persons[0].number}}`))
  
   const generateId = () => {
     const maxId = persons.length > 0
@@ -56,13 +55,11 @@ app.post('/api/persons', (request, response) =>{
     }
 
     const person = {
-        id: Math.round(Math.random(generateId) + 5),
+        id: generateId(),
         name: personne.name,
         number: personne.number
     }
-    const poster = (request, response) => {
-        response.status(200 || 201).send({ name: personne.name,  number: personne.number})
-    }
+
     app.use(morgan(`:method :url :status :res[content-length] - :response-time ms  {"name": ${person.name}, "number": ${person.number}}`))
     persons = persons.concat(person)
     response.json(person)
